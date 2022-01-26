@@ -4,8 +4,6 @@ from sklearn import metrics
 import torch.nn as nn
 import numpy as np 
 from sklearn.svm import LinearSVC
-#from carla import MLModel
-#from carla.models.pipelining import encode
 from recourse_utils import DummyScaler
 
 class Model():
@@ -127,36 +125,6 @@ class NN(Model):
 
 	def predict(self, X):
 		return np.argmax(self.predict_proba(X), axis=1)
-
-
-# class CarlaModel(MLModel):
-# 	def __init__(self, data, trained_model):
-# 		super().__init__(data,scaling_method="Dummy",encoding_method="OneHot_drop_binary")
-		
-# 		fitted_scaler = DummyScaler()
-# 		self.scaler = fitted_scaler
-# 		self.trained_model = trained_model 
-
-# 	@property
-# 	def feature_input_order(self):
-# 		inputs = self.data.raw.drop(columns=[self.data.target])
-# 		encoded_inputs = encode(self.encoder, self.data.categoricals, inputs)
-# 		return list(encoded_inputs)
-
-# 	@property
-# 	def backend(self):
-# 		return "sklearn"
-
-# 	@property
-# 	def raw_model(self):
-# 		return self.trained_model.torch_model
-
-# 	def predict(self, x):
-# 		return self.trained_model.predict(x)
-
-# 	def predict_proba(self, x):
-# 		return self.trained_model.predict_proba(x)
-
 
 
 
