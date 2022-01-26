@@ -1,4 +1,4 @@
-# ROAR-Internal
+# ROAR
 
 ## Requirements
 To run this code first install the packages in requirements.txt. This code also requires custom extensions of the open sourced actionable-recourse and LIME libraries contained in `actionable-recourse/` and `lime/` respectively. Follow the requirements instructions and run `python setup.py` in each folder. 
