@@ -6,7 +6,6 @@ from data import *
 import pickle
 from tqdm import tqdm 
 from sklearn.model_selection import train_test_split
-from carla.recourse_methods import CCHVAE
 
 
 if __name__ == "__main__":
@@ -132,23 +131,6 @@ if __name__ == "__main__":
 			for x in tqdm(recourse_needed_X_test):
 				r = counterfactual_recourse(m.torch_model, x, feature_costs)
 				recourses.append(r)
-
-		elif args.recourse == "cchvae":
-			carla_model = CarlaModel(carla_data, m)
-			n_feat = len(carla_model.feature_input_order)
-			cchvae = CCHVAE(carla_model, hyperparams={"data_name": "sim",
-									 "pnorm":1,
-									  "clamp":False,
-									  "step":0,
-									  "binary_cat_features":True,
-									  "vae_params":{"layers":[n_feat, 1],
-													"epochs":50,
-													"lr":1e-3}})
-			factuals = X_test.iloc[recourse_needed_idx_X_test]
-			factuals[carla_data.target] = np.zeros(len(factuals))
-			recourses = cchvae.get_counterfactuals(factuals.iloc[:10]).drop(columns=[carla_data.target]).values
-			print(factuals)
-			print(recourses)
 
 		results_i["recourses"] = recourses
 		if args.recourse =="robust":
