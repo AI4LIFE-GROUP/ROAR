@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-#from carla import Data 
 from abc import abstractmethod
 
 class Dataset():
@@ -80,35 +79,6 @@ class CorrectionShift(Dataset):
 
 		return data1, data2
 
-# class CorrectionShiftCarla(Data):
-# 	def __init__(self, seed, fname1, fname2):
-# 		d1, d2 = CorrectionShift(seed).get_data(fname1, fname2)
-# 		#Passing D1 training set to recourse algorithm
-# 		X1_train, y1_train, X1_test, y1_test = d1
-# 		X1_train["credit_risk"] = y1_train.values
-# 		self._dataset = X1_train
-	
-# 	@property
-# 	def categoricals(self):
-# 		return [c for c in list(self._dataset) if "sex" in c]
-	
-# 	@property
-# 	def continous(self):
-# 		return ["duration", "amount", "age"]
-
-# 	@property
-# 	def immutables(self):
-# 		return [c for c in list(self._dataset) if "sex" in c]
-
-# 	@property
-# 	def target(self):
-# 		return "credit_risk"
-
-# 	@property
-# 	def raw(self):
-# 		return self._dataset
-
-
 
 class TemporalShift(Dataset):
 	def __init__(self, seed):
@@ -148,39 +118,6 @@ class TemporalShift(Dataset):
 		return data1, data2
 
 
-# class TemporalShiftCarla(Data):
-# 	def __init__(self, seed, fname):
-# 		self.data = TemporalShift(seed)
-# 		d1, d2 = self.data.get_data(fname)
-# 		#Passing D1 training set to recourse algorithm
-# 		X1_train, y1_train, X1_test, y1_test = d1
-# 		X1_train["NoDefault"] = y1_train.values
-# 		self._dataset = X1_train
-	
-# 	@property
-# 	def categoricals(self):
-# 		cat_feat,num_feat = self.data.get_feat_types(self._dataset)
-# 		cat_feat = [c for c in list(self._dataset) if c not in num_feat]
-# 		return [c for c in cat_feat if self.target not in c]
-	
-# 	@property
-# 	def continous(self):
-# 		cat_feat,num_feat = self.data.get_feat_types(self._dataset)
-# 		return num_feat
-
-# 	@property
-# 	def immutables(self):
-# 		return []
-
-# 	@property
-# 	def target(self):
-# 		return "NoDefault"
-
-# 	@property
-# 	def raw(self):
-# 		return self._dataset
-
-
 class GeospatialShift(Dataset):
 	def __init__(self, seed):
 		super(GeospatialShift, self).__init__(seed)
@@ -215,37 +152,6 @@ class GeospatialShift(Dataset):
 		return data1, data2
 
 
-# class GeospatialShiftCarla(Data):
-# 	def __init__(self, seed, fname, sep):
-# 		self.data = GeospatialShift(seed)
-# 		d1, d2 = self.data.get_data(fname, sep)
-# 		#Passing D1 training set to recourse algorithm
-# 		X1_train, y1_train, X1_test, y1_test = d1
-# 		X1_train["Outcome"] = y1_train.values
-# 		self._dataset = X1_train
-	
-# 	@property
-# 	def categoricals(self):
-# 		cat_feat,num_feat = self.data.get_feat_types(self._dataset)
-# 		cat_feat = [c for c in list(self._dataset) if c not in num_feat]
-# 		return [c for c in cat_feat if self.target not in c]
-	
-# 	@property
-# 	def continous(self):
-# 		cat_feat,num_feat = self.data.get_feat_types(self._dataset)
-# 		return num_feat
-
-# 	@property
-# 	def immutables(self):
-# 		return []
-
-# 	@property
-# 	def target(self):
-# 		return "Outcome"
-
-# 	@property
-# 	def raw(self):
-# 		return self._dataset
 
 
 class SimulatedData(Dataset):
@@ -275,34 +181,5 @@ class SimulatedData(Dataset):
 		#return X_train.values, X_test.values, y_train.values, y_test.values
 		# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=self.fold)
 		return X_train, X_test, y_train, y_test
-
-# class SimulatedDataCarla(Data):
-# 	def __init__(self, seed, num_samples):
-# 		self.data = SimulatedData(seed)
-# 		X_train, X_test, y_train, y_test = self.data.get_data(num_samples)
-# 		#Passing training set to recourse algorithm
-# 		X_train["y"] = y_train.values
-# 		self._dataset = X_train
-	
-# 	@property
-# 	def categoricals(self):
-# 		return []
-	
-# 	@property
-# 	def continous(self):
-# 		cat_feat,num_feat = self.data.get_feat_types(self._dataset)
-# 		return ["X0", "X1"]
-
-# 	@property
-# 	def immutables(self):
-# 		return []
-
-# 	@property
-# 	def target(self):
-# 		return "y"
-
-# 	@property
-# 	def raw(self):
-# 		return self._dataset
 
 
