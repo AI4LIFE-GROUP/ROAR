@@ -6,7 +6,6 @@ from data import *
 import pickle
 from tqdm import tqdm 
 import ast
-#from carla.recourse_methods import CCHVAE
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
