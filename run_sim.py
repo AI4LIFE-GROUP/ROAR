@@ -27,9 +27,6 @@ if __name__ == "__main__":
 		results_i = {}
 		seed = i
 		
-		if args.recourse=="cchvae":
-			carla_data = SimulatedDataCarla(seed, num_samples=10000)
-		
 		simdata = SimulatedData(seed)
 		X_train, X_test, y_train, y_test = simdata.get_data(num_samples=10000)
 
