@@ -3,8 +3,8 @@ from torch.autograd import Variable
 import torch.optim as optim
 from torch.autograd import grad
 import datetime
-#from recourse.builder import RecourseBuilder
-#from recourse.builder import ActionSet
+from recourse.builder import RecourseBuilder
+from recourse.builder import ActionSet
 from scipy.optimize import linprog
 from recourse_utils import *
 from tqdm import tqdm
